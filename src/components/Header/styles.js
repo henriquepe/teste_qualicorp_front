@@ -10,5 +10,13 @@ export const Container = styled.div`
     background-color: #272A38;
     color: #fff;
 
+    a {
+        transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.6;
+    }
+    }
+
 
 `;

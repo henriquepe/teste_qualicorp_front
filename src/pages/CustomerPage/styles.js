@@ -53,6 +53,11 @@ export const Button = styled.button`
     background: #50fa7b;
     bordeR: 0;
     border-radius: 20px;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.6;
+    }
 
     @media (max-width: 500px) {
         width: 100%;

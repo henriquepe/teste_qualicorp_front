@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Input from '../../components/Input';
 import Header from '../../components/Header'
 
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 import {celularMask, cpfMask} from '../../Masks'
 
@@ -20,8 +20,11 @@ const CustomerPage = () => {
     const [celular, setCelular] = useState('')
 
     const {id} = useParams();
+    let history = useHistory();
 
     const handleSubmit = async(data) => {
+
+       
 
         if(data.nome === "" || data.cpf === "" || data.email === "" || data.celular === "" || data.rua === "" || data.cidade === "" || data.estado === ""){
             alert('Preencha os campos para atualizar o cadastro do cliente')
@@ -39,6 +42,8 @@ const CustomerPage = () => {
                 estado: data.estado
             }
         })
+
+        history.push("/")
     }
 
     const handleCPFchange = (e) => {

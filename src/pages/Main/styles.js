@@ -146,6 +146,12 @@ export const DeleteButton = styled(Button)`
     color: #000 !important;
     font-weight: bold !important;
 
+    transition: opacity 0.2s !important;
+
+    &:hover {
+        opacity: 0.6;
+    }
+
 `;
 
 export const UpdateButton = styled(Button)`
@@ -157,5 +163,11 @@ export const UpdateButton = styled(Button)`
     font-size: 14px !important;
     color: #000 !important;
     font-weight: bold !important;
+
+    transition: opacity 0.2s !important;
+
+    &:hover {
+        opacity: 0.6;
+    }
 
 `;
