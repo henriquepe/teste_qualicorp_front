@@ -67,7 +67,7 @@ const Main = () => {
     const [customers, setCustomers] = useState([])
     const [open, setOpen] = React.useState(false);
     const formRef = useRef();
-    const [customer, setCustomer] = useState([])
+
     
 
     
