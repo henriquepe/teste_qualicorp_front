@@ -23,8 +23,11 @@ const CustomerPage = () => {
 
     const handleSubmit = async(data) => {
 
-        console.log(data);
-        console.log(typeof data.cpf)
+        if(data.nome === "" || data.cpf === "" || data.email === "" || data.celular === "" || data.rua === "" || data.cidade === "" || data.estado === ""){
+            alert('Preencha os campos para atualizar o cadastro do cliente')
+            return;
+          }
+
         await api.put(`/customers/update/${id}`, {
             nome: data.nome,
             cpf: data.cpf !== null && data.cpf,
