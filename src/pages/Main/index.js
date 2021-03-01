@@ -67,15 +67,10 @@ const Main = () => {
     const [customers, setCustomers] = useState([])
     const [open, setOpen] = React.useState(false);
     const formRef = useRef();
+    const [customer, setCustomer] = useState([])
     
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-      setOpen(false);
-        
-    };
+    
 
     const [cpfValue, setCPFValue] = useState('')
     const [celularValue, setCelularValue] = useState('')
@@ -88,7 +83,25 @@ const Main = () => {
       setCelularValue(celularMask(e.target.value))
     }
 
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    const handleClose = () => {
+
+      setOpen(false)
+
+    };
+
     const handleFormSubmit = async(data) => {
+
+      
+      if(data.nome === "" || data.cpf === "" || data.email === "" || data.celular === "" || data.rua === "" || data.cidade === "" || data.estado === ""){
+        alert('Preencha todos os campos para criar um cliente')
+        return;
+      }
+
+      setOpen(false)
       
       await api.post('/customers/create', {
         nome: data.nome,
@@ -102,13 +115,18 @@ const Main = () => {
         }
       })
 
+      
+
       const response = await api.get('/customers')
 
       setCustomers(response.data)
 
       setCPFValue('')
       setCelularValue('')
+      
     }
+
+    
 
 
     useEffect(() => {
@@ -136,13 +154,13 @@ const Main = () => {
                     <Form ref={formRef} onSubmit={handleFormSubmit}>
                       <DialogContent dividers>
                           
-                            <Input name="nome" mask="null" placeholder="Digite o nome do cliente" />
-                            <Input name="cpf" value={cpfValue} onChange={handleChangeCPF} placeholder="Digite o cpf do cliente" />
-                            <Input name="email" placeholder="Digite o email do cliente" />
-                            <Input name="celular" value={celularValue} onChange={handleChangeCelular} placeholder="Digite o celular do cliente" />
-                            <Input name="rua"  placeholder="Digite a rua do cliente" />
-                            <Input name="cidade" placeholder="Digite a cidade do cliente" />
-                            <Input name="estado" mask="**" placeholder="Digite o estado do cliente" />
+                            <Input name="nome"  placeholder="Digite o nome do cliente" />
+                            <Input name="cpf"  value={cpfValue} onChange={handleChangeCPF} placeholder="Digite o cpf do cliente" />
+                            <Input name="email"  placeholder="Digite o email do cliente" />
+                            <Input name="celular"  value={celularValue} onChange={handleChangeCelular} placeholder="Digite o celular do cliente" />
+                            <Input name="rua"   placeholder="Digite a rua do cliente" />
+                            <Input name="cidade"  placeholder="Digite a cidade do cliente" />
+                            <Input name="estado"  placeholder="Digite o estado do cliente" />
 
                                             
                           
@@ -150,7 +168,7 @@ const Main = () => {
                       </DialogContent>
                       <DialogActions>
 
-                        <Button type='submit' autoFocus onClick={handleClose} color="primary">
+                        <Button type='submit' autoFocus color="primary">
                           Adicionar cliente
                         </Button>
                       
